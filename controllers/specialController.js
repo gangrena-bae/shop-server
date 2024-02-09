@@ -1,11 +1,10 @@
 const nodemailer = require("nodemailer");
 const smtpTransport = require("nodemailer-smtp-transport");
 
-class CartController {
+class SpecialController {
   async create(req, res) {
     // Действия для создания записи в корзине
-    let { firstName, lastName, city, phone, email, type, totalCost, cartList } =
-      req.body;
+    let { name, email, text } = req.body;
     // Создание транспорта для отправки электронной почты через Gmail.com
     const transporter = nodemailer.createTransport(
       smtpTransport({
@@ -21,16 +20,10 @@ class CartController {
     const mailOptions = {
       from: "woodman.rempe@gmail.com",
       to: "woodman.mail.me@gmail.com",
-      subject: "Новый заказ",
-      text: `Поступил новый заказ от клиента.
-      Список товаров: ${cartList}
-      Полная стоимость: ${totalCost}
-      Имя:${firstName}
-      Фамилия:${lastName}
-      Город:${city}
-      Телефон:${phone}
-      E-mail:${email}
-      Лицо:${type}`,
+      subject: "Особый заказ",
+      text: `Новое сообщение:
+      От:${name}. E-mail:${email}.
+      Текст сообщения:${text}`,
     };
 
     // Отправка письма
@@ -47,4 +40,4 @@ class CartController {
   }
 }
 
-module.exports = new CartController();
+module.exports = new SpecialController();
