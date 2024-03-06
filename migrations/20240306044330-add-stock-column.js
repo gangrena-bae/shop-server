@@ -8,11 +8,11 @@ module.exports = {
       allowNull: false,
       defaultValue: true,
     });
-    // await queryInterface.addColumn("devices", "description", {
-    //   type: Sequelize.STRING,
-    //   allowNull: false,
-    //   defaultValue: "",
-    // });
+    await queryInterface.addColumn("devices", "description", {
+      type: Sequelize.STRING,
+      allowNull: false,
+      defaultValue: "",
+    });
   },
 
   async down(queryInterface, Sequelize) {
