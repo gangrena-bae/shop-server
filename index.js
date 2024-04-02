@@ -23,7 +23,7 @@ app.use(errorHandler);
 const start = async () => {
   try {
     await sequelize.authenticate();
-    await sequelize.sync({ force: true }).then(() => {
+    await sequelize.sync({ force: false }).then(() => {
       // console.log("База данных и таблицы созданы!");
     });
     app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
