@@ -22,7 +22,8 @@ const Device = sequelize.define("device", {
   price: { type: DataTypes.INTEGER, allowNull: false },
   rating: { type: DataTypes.INTEGER, defaultValue: 0 },
   img: { type: DataTypes.STRING, allowNull: false },
-  stock:  { type: DataTypes.BOOLEAN, allowNull: false },
+  additionalFiles: { type: DataTypes.TEXT, allowNull: true },
+  stock: { type: DataTypes.BOOLEAN, allowNull: false },
   description: { type: DataTypes.STRING, allowNull: false },
 });
 
@@ -69,7 +70,7 @@ Rating.belongsTo(Device);
 Device.hasMany(BasketDevice);
 BasketDevice.belongsTo(Device);
 
-Device.hasMany(DeviceInfo, {as: 'info'});
+Device.hasMany(DeviceInfo, { as: "info" });
 DeviceInfo.belongsTo(Device);
 
 Type.belongsToMany(Brand, { through: TypeBrand });

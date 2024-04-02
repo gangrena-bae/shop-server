@@ -14,5 +14,11 @@ router.put(
   deviceController.updateDeviceDescription
 );
 router.put("/updateImage/:id", deviceController.updateImage);
+router.post(
+  "/:id/updateAdditionalFiles",
+  deviceController.updateAdditionalFiles
+);
+router.patch("/:id/brand", deviceController.updateDeviceBrand);
+router.patch("/:id/type", deviceController.updateDeviceType);
 
 module.exports = router;
