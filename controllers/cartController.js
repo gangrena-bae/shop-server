@@ -20,15 +20,13 @@ class CartController {
       .join("\n");
 
     // Создание транспорта для отправки электронной почты через Gmail.com
-    const transporter = nodemailer.createTransport(
-      smtpTransport({
-        service: "gmail",
-        auth: {
-          user: "woodman.rempe@gmail.com",
-          pass: "jrxm qqnb pixe ihpw",
-        },
-      })
-    );
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "woodman.rempe@gmail.com",
+        pass: "jrxm qqnb pixe ihpw",
+      },
+    });
 
     // Опции письма
     const mailOptions = {
