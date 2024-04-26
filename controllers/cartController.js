@@ -1,5 +1,6 @@
 const nodemailer = require("nodemailer");
 const smtpTransport = require("nodemailer-smtp-transport");
+const axios = require("axios");
 
 class CartController {
   async create(req, res) {
@@ -54,6 +55,22 @@ class CartController {
         console.log("Письмо успешно отправлено:", info.response);
       }
     });
+    // Добавление отправки уведомления в Telegram
+    const telegramToken = "7182476371:AAEE9_XgbZ5RdrH7d7c4mCAyrwelzuiKrfo";
+    const chatId = "226172718";
+    const message = `Поступил новый заказ от ${firstName} ${lastName}. Полная стоимость: ${totalCost}. Подробности в почте.`;
+
+    axios
+      .post(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
+        chat_id: chatId,
+        text: message,
+      })
+      .then((response) => {
+        console.log("Сообщение в Telegram успешно отправлено");
+      })
+      .catch((error) => {
+        console.log("Ошибка при отправке сообщения в Telegram:", error);
+      });
 
     // Возвращение ответа клиенту
     res.send("Запись успешно создана и письмо отправлено.");
