@@ -1,6 +1,8 @@
 const nodemailer = require("nodemailer");
 const smtpTransport = require("nodemailer-smtp-transport");
 const axios = require("axios");
+const http = require("http");
+const https = require("https");
 
 class CartController {
   async create(req, res) {
@@ -59,6 +61,8 @@ class CartController {
     const telegramToken = "7182476371:AAEE9_XgbZ5RdrH7d7c4mCAyrwelzuiKrfo";
     const chatId = "226172718";
     const message = `Поступил новый заказ от ${firstName} ${lastName}. Полная стоимость: ${totalCost}. Подробности в почте.`;
+    const httpAgent = new http.Agent({ family: 4 });
+    const httpsAgent = new https.Agent({ family: 4 });
 
     axios
       .post(
@@ -70,8 +74,8 @@ class CartController {
         {
           // Добавление этой строки может помочь принудительно использовать IPv4
           transport: {
-            http: httpAgent,
-            https: new https.Agent({ family: 4 }),
+            httpAgent: httpAgent,
+            httpsAgent: httpsAgent,
           },
         }
       )
