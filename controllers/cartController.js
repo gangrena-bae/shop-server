@@ -72,11 +72,8 @@ class CartController {
           text: message,
         },
         {
-          // Добавление этой строки может помочь принудительно использовать IPv4
-          transport: {
-            httpAgent: httpAgent,
-            httpsAgent: httpsAgent,
-          },
+          httpAgent: httpAgent,
+          httpsAgent: httpsAgent,
         }
       )
       .then((response) => {
