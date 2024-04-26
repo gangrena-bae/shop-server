@@ -61,10 +61,20 @@ class CartController {
     const message = `Поступил новый заказ от ${firstName} ${lastName}. Полная стоимость: ${totalCost}. Подробности в почте.`;
 
     axios
-      .post(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
-        chat_id: chatId,
-        text: message,
-      })
+      .post(
+        `https://api.telegram.org/bot${telegramToken}/sendMessage`,
+        {
+          chat_id: chatId,
+          text: message,
+        },
+        {
+          // Добавление этой строки может помочь принудительно использовать IPv4
+          transport: {
+            http: httpAgent,
+            https: new https.Agent({ family: 4 }),
+          },
+        }
+      )
       .then((response) => {
         console.log("Сообщение в Telegram успешно отправлено");
       })
