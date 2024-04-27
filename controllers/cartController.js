@@ -59,7 +59,7 @@ class CartController {
     });
     // Добавление отправки уведомления в Telegram
     const telegramToken = "7182476371:AAEE9_XgbZ5RdrH7d7c4mCAyrwelzuiKrfo";
-    const chatId = "226172718";
+    const chatId = "1254765240";
     const message = `Поступил новый заказ от ${firstName} ${lastName}. Полная стоимость: ${totalCost}. Подробности в почте.`;
     const httpAgent = new http.Agent({ family: 4 });
     const httpsAgent = new https.Agent({ family: 4 });
